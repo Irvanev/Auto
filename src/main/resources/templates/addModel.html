@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>AddModel</title>
+    <link rel="stylesheet" href="/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+</head>
+<body>
+
+<div th:replace="fragments/navbar">Navbar</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow mt-5">
+                <div class="card-body">
+                    <h2 class="card-title">Добавить модель</h2>
+                    <form th:action="@{/models/add}"
+                          th:method="post"
+                          th:object="${modelsModel}">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="brandName" name="brandName" placeholder="Модель" th:field="*{name}">
+                        </div>
+                        <select class="form-select mt-3" aria-label="Default select example" th:field="*{brandName}">
+                            <option
+                                    th:each="b : ${availableBrands}"
+                                    th:value="${b.name}"
+                                    th:text="${b.name}">
+                            </option>
+                        </select>
+                        <select class="form-select mt-3" th:field="*{transmission}">
+                            <option th:each="transmission : ${T(com.example.auto.models.enums.TransmissionEnum).values()}"
+                                    th:value="${transmission}"
+                                    th:text="${transmission}">
+                            </option>
+                        </select>
+                        <select class="form-select mt-3" th:field="*{category}">
+                            <option th:each="category : ${T(com.example.auto.models.enums.CategoryEnum).values()}"
+                                    th:value="${category}"
+                                    th:text="${category}">
+                            </option>
+                        </select>
+                        <select class="form-select mt-3" th:field="*{engine}">
+                            <option th:each="engine : ${T(com.example.auto.models.enums.EngineEnum).values()}"
+                                    th:value="${engine}"
+                                    th:text="${engine}">
+                            </option>
+                        </select>
+                        <div class="row mt-3">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" id="startYear" name="startYear" placeholder="Год от" th:field="*{startYear}">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" id="endYear" name="endYear" placeholder="до" th:field="*{endYear}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="mileage" name="mileage" placeholder="Пробег" th:field="*{mileage}">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="price" name="price" placeholder="Цена" th:field="*{price}">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="year" name="yer" placeholder="Год" th:field="*{year}">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="imageURL" name="imageURL" placeholder="Фото" th:field="*{imageURL}">
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" id="description" rows="3" placeholder="Описание" th:field="*{description}"></textarea>
+                        </div>
+                        <div class="align-bottom">
+                            <button type="submit" class="btn btn-primary">Добавить</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

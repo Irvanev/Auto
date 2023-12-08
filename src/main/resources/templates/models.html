@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+</head>
+<body>
+
+<div th:replace="fragments/navbar">Navbar</div>
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-3 text-start">
+            <div class="align-bottom">
+                <a class="btn btn-info" th:href="@{/models/add}">Добавить</a>
+            </div>
+        </div>
+        <div class="col-6 text-center">
+            <input type="search" class="form-control" placeholder="Поиск">
+        </div>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-3 mt-3">
+            <ul class="services-list">
+                <li>
+                    <select class="form-select" th:field="*{brands}" id="brandSelect">
+                        <option th:each="b : ${brands}"
+                                th:value="${b.name}"
+                                th:text="${b.name}">
+                        </option>
+                    </select>
+                </li>
+                <li>
+                    <select class="form-select" th:field="*{models}">
+                        <option th:each="m : ${models}"
+                                th:value="${m.name}"
+                                th:text="${m.name}">
+                        </option>
+                    </select>
+                </li>
+                <li>
+                    <select class="form-select" th:field="*{models}">
+                        <option th:each="m : ${models}"
+                                th:value="${m.transmission}"
+                                th:text="${m.transmission}">
+                        </option>
+                    </select>
+                </li>
+                <li>
+                    <select class="form-select" th:field="*{models}">
+                        <option th:each="m : ${models}"
+                                th:value="${m.engine}"
+                                th:text="${m.engine}">
+                        </option>
+                    </select>
+                </li>
+
+                <li>
+                    <div class="row mt-3">
+                        <div class="col">
+                            <select class="form-select" aria-label="Default select example" id="startYear"
+                                    th:field="*{models}">
+                                <option th:each="m : ${models}"
+                                        th:value="${m.startYear}"
+                                        th:text="${m.startYear}">
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <select class="form-select" aria-label="Default select example" id="endYear"
+                                    th:field="*{models}">
+                                <option th:each="m : ${models}"
+                                        th:value="${m.endYear}"
+                                        th:text="${m.endYear}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                </li>
+
+                <li>
+                    <div class="row mt-3">
+                        <div class="col">
+                            <input type="text" class="form-control" id="startMileage" placeholder="Пробег от">
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" id="endMileage" placeholder="до">
+                        </div>
+                    </div>
+
+                </li>
+
+                <li>
+                    <button type="button" class="btn btn-primary">Показать предложения</button>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-md-9">
+            <div class="news-card mt-3" th:each="model : ${models}">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img th:src="${model.imageURL}"
+                             alt="Photo" class="news-image">
+                    </div>
+                    <div class="col-md-6 mt-3">
+                        <div class="news">
+                            <a th:href="@{/models/modelDetails/{id}(id=${model.id})}">
+                                <h2 th:text="${model.brandName} + ' ' + ${model.name}"></h2>
+                            </a>
+                            <h5 th:text="${model.year}"></h5>
+                            <h5 th:text="${model.price} + ' P'"></h5>
+                            <h5 th:text="${model.category}"></h5>
+                            <h5 th:text="${model.transmission}"></h5>
+                            <h5 th:text="${model.mileage} + ' км'"></h5>
+                            <h5 th:text="${model.engine}"></h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="text-center">© 2023 CarDealeShip. RUT MIIT.</p>
+            </div>
+        </div>
+    </div>
+</footer>-->
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+.services-list {
+    list-style-type: none;
+    padding: 0;
+    text-align: left;
+}
+
+.services-list li {
+    margin-bottom: 10px;
+}
+
+.news-card:hover {
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.news-image {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.services-list li:last-child {
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: #1a1d20;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #f8f9fa;
+    padding: 20px 0;
+}
+
+footer p {
+    color: #6c757d;
+}
+
+.bi-person {
+    fill: white;
+}

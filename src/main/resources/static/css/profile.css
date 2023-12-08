@@ -1,0 +1,20 @@
+.bi-person {
+    fill: white;
+}
+
+.profile {
+    margin-top: 50px;
+}
+
+.profile-picture {
+    width: 30%;
+    height: auto;
+}
+
+.profile h2, .profile h3 {
+    color: #333;
+}
+
+.profile p {
+    color: #666;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Brands</title>
+    <link rel="stylesheet" href="/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/brands.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+</head>
+<body>
+
+<div th:replace="fragments/navbar">Navbar</div>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-6 text-start">
+            <h1>Бренды</h1>
+        </div>
+        <div class="col-6 text-end">
+            <div class="align-bottom">
+                <a class="btn btn-info" th:href="@{/brands/add}">Добавить</a>
+            </div>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Country</th>
+            <th scope="col">Created</th>
+            <th scope="col">Modified</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="b : ${brands}">
+            <td th:text="${b.name}"></td>
+            <td th:text="${b.country}"></td>
+            <td th:text="${b.created}"></td>
+            <td th:text="${b.modified}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

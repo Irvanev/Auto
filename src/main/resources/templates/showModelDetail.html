@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+</head>
+<body>
+
+<div th:replace="fragments/navbar">Navbar</div>
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <img th:src="${modelInfo.imageURL}" class="card-img-top" alt="Brand Image">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${modelInfo.brandName} + ' ' + ${modelInfo.name}"></h5>
+                    <p class="card-text">Category: <span th:text="${modelInfo.category}"></span></p>
+                    <p class="card-text">Engine: <span th:text="${modelInfo.engine}"></span></p>
+                    <p class="card-text">Transmission: <span th:text="${modelInfo.transmission}"></span></p>
+                    <p class="card-text">Year: <span th:text="${modelInfo.year}"></span></p>
+                    <p class="card-text">Start year: <span th:text="${modelInfo.startYear}"></span></p>
+                    <p class="card-text">End year: <span th:text="${modelInfo.endYear}"></span></p>
+                    <p class="card-text">Description: <span th:text="${modelInfo.description}"></span></p>
+                    <p class="card-text">Created: <span th:text="${modelInfo.created}"></span></p>
+                    <p class="card-text">Modified: <span th:text="${modelInfo.modified}"></span></p>
+                    <div class="d-grid gap-2">
+                        <a th:href="@{/models/modelDelete/{id}(id=${modelInfo.id})}" class="btn btn-danger">Удалить</a>
+                        <a href="#" class="btn btn-primary">Изменить</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
