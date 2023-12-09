@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -19,18 +19,18 @@
                 <img th:src="${modelInfo.imageURL}" class="card-img-top" alt="Brand Image">
                 <div class="card-body">
                     <h5 class="card-title" th:text="${modelInfo.brandName} + ' ' + ${modelInfo.name}"></h5>
-                    <p class="card-text">Category: <span th:text="${modelInfo.category}"></span></p>
-                    <p class="card-text">Engine: <span th:text="${modelInfo.engine}"></span></p>
-                    <p class="card-text">Transmission: <span th:text="${modelInfo.transmission}"></span></p>
+                    <p class="card-text">Category: <span th:text="${modelInfo.category.name}"></span></p>
+                    <p class="card-text">Engine: <span th:text="${modelInfo.engine.name}"></span></p>
+                    <p class="card-text">Transmission: <span th:text="${modelInfo.transmission.name}"></span></p>
                     <p class="card-text">Year: <span th:text="${modelInfo.year}"></span></p>
                     <p class="card-text">Start year: <span th:text="${modelInfo.startYear}"></span></p>
                     <p class="card-text">End year: <span th:text="${modelInfo.endYear}"></span></p>
                     <p class="card-text">Description: <span th:text="${modelInfo.description}"></span></p>
-                    <p class="card-text">Created: <span th:text="${modelInfo.created}"></span></p>
-                    <p class="card-text">Modified: <span th:text="${modelInfo.modified}"></span></p>
+                    <p class="card-text" sec:authorize="hasRole('Admin')">Created: <span th:text="${#temporals.format(modelInfo.created, 'dd.MM.yyyy HH:mm')}"></span></p>
+                    <p class="card-text" sec:authorize="hasRole('Admin')">Modified: <span th:text="${#temporals.format(modelInfo.modified, 'dd.MM.yyyy HH:mm')}"></span></p>
                     <div class="d-grid gap-2">
-                        <a th:href="@{/models/modelDelete/{id}(id=${modelInfo.id})}" class="btn btn-danger">Удалить</a>
-                        <a href="#" class="btn btn-primary">Изменить</a>
+                        <a th:href="@{/models/modelDelete/{id}(id=${modelInfo.id})}" class="btn btn-danger" sec:authorize="hasRole('Admin')">Удалить</a>
+                        <a href="#" class="btn btn-primary" sec:authorize="hasRole('Admin')">Изменить</a>
                     </div>
                 </div>
             </div>

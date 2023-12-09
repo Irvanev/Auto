@@ -9,6 +9,7 @@ import com.example.auto.repositories.BrandRepository;
 import com.example.auto.repositories.ModelRepository;
 import com.example.auto.services.ModelsService;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -62,5 +63,10 @@ public class ModelServiceImpl implements ModelsService {
         modelMapper.typeMap(Models.class, ShowModelInfoDto.class)
                 .addMapping(Models::getBrands, ShowModelInfoDto::setBrandName);
         return modelMapper.map(modelRepository.findById(id), ShowModelInfoDto.class);
+    }
+
+    @Override
+    public List<Models> searchModels(String brand, String model) {
+        return modelRepository.findByBrandsNameAndName(brand, model);
     }
 }

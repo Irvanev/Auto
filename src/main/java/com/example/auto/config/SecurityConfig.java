@@ -19,7 +19,7 @@ import org.springframework.security.web.context.SecurityContextRepository;
 
 @Configuration
 public class SecurityConfig {
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public SecurityConfig(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -34,11 +34,11 @@ public class SecurityConfig {
                                         requestMatchers(PathRequest.toStaticResources().atCommonLocations())
                                         .permitAll().
                                         requestMatchers("/models/all", "/users/login", "/users/register", "/users/login-error", "models/category/Car",
-                                                "models/category/Bus", "models/category/Truck", "models/category/Motorcycle", "/users/login-error")
+                                                "models/category/Bus", "models/category/Truck", "models/category/Motorcycle", "/users/login-error",  " img/** ")
                                         .permitAll().
                                         requestMatchers("/users/profile").authenticated().
                                         requestMatchers("/models/add","/brands/all","/brands/add", "/models/modelDelete/").hasRole(RoleEnum.Admin.name()).
-                                        anyRequest().authenticated()
+                                        anyRequest().permitAll()
                 )
                 .formLogin(
                         (formLogin) ->
@@ -46,7 +46,7 @@ public class SecurityConfig {
                                         loginPage("/users/login").
                                         usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY).
                                         passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY).
-                                        defaultSuccessUrl("/users/profile").
+                                        defaultSuccessUrl("/models/all").
                                         failureForwardUrl("/users/login-error")
                 )
                 .logout((logout) ->

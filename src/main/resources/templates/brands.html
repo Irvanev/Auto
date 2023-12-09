@@ -36,8 +36,8 @@
         <tr th:each="b : ${brands}">
             <td th:text="${b.name}"></td>
             <td th:text="${b.country}"></td>
-            <td th:text="${b.created}"></td>
-            <td th:text="${b.modified}"></td>
+            <td th:text="${#temporals.format(b.created, 'dd.MM.yyyy HH:mm')}"></td>
+            <td th:text="${#temporals.format(b.modified, 'dd.MM.yyyy HH:mm')}"></td>
         </tr>
         </tbody>
     </table>

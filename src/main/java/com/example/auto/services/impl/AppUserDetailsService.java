@@ -20,11 +20,28 @@ public class AppUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByUsername(username)
-                .map(u -> new User(
-                        u.getUsername(),
-                        u.getPassword(),
-                        Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + u.getRole().getRoleName().name()))
-                ))
+                .map(u -> {
+                    String password = u.getPassword();
+                    String roleName = u.getRole().getRoleName().name();
+
+                    if (username == null || username.isEmpty()) {
+                        throw new IllegalArgumentException("Username cannot be null or empty");
+                    }
+
+                    if (password == null || password.isEmpty()) {
+                        throw new IllegalArgumentException("Password cannot be null or empty");
+                    }
+
+                    if (roleName == null || roleName.isEmpty()) {
+                        throw new IllegalArgumentException("Role cannot be null or empty");
+                    }
+
+                    return new User(
+                            username,
+                            password,
+                            Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + roleName))
+                    );
+                })
                 .orElseThrow(() -> new UsernameNotFoundException(username + "User not found"));
     }
 }

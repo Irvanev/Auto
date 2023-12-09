@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
@@ -16,11 +16,23 @@
     <div class="row">
         <div class="col-3 text-start">
             <div class="align-bottom">
-                <a class="btn btn-info" th:href="@{/models/add}">Добавить</a>
+                <a class="btn btn-info" sec:authorize="hasRole('Admin')" th:href="@{/models/add}">Добавить</a>
             </div>
         </div>
         <div class="col-6 text-center">
-            <input type="search" class="form-control" placeholder="Поиск">
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+        <div class="dropdown col-3">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown button
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" th:href="@{/models/sort/price}">Цены по убыванию</a></li>
+                <li><a class="dropdown-item" href="#">Цены по возрастанию</a></li>
+            </ul>
         </div>
     </div>
 </div>
@@ -28,80 +40,21 @@
 <div class="container mt-4">
     <div class="row">
         <div class="col-md-3 mt-3">
-            <ul class="services-list">
-                <li>
-                    <select class="form-select" th:field="*{brands}" id="brandSelect">
-                        <option th:each="b : ${brands}"
-                                th:value="${b.name}"
-                                th:text="${b.name}">
-                        </option>
-                    </select>
-                </li>
-                <li>
-                    <select class="form-select" th:field="*{models}">
-                        <option th:each="m : ${models}"
-                                th:value="${m.name}"
-                                th:text="${m.name}">
-                        </option>
-                    </select>
-                </li>
-                <li>
-                    <select class="form-select" th:field="*{models}">
-                        <option th:each="m : ${models}"
-                                th:value="${m.transmission}"
-                                th:text="${m.transmission}">
-                        </option>
-                    </select>
-                </li>
-                <li>
-                    <select class="form-select" th:field="*{models}">
-                        <option th:each="m : ${models}"
-                                th:value="${m.engine}"
-                                th:text="${m.engine}">
-                        </option>
-                    </select>
-                </li>
-
-                <li>
-                    <div class="row mt-3">
-                        <div class="col">
-                            <select class="form-select" aria-label="Default select example" id="startYear"
-                                    th:field="*{models}">
-                                <option th:each="m : ${models}"
-                                        th:value="${m.startYear}"
-                                        th:text="${m.startYear}">
-                                </option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <select class="form-select" aria-label="Default select example" id="endYear"
-                                    th:field="*{models}">
-                                <option th:each="m : ${models}"
-                                        th:value="${m.endYear}"
-                                        th:text="${m.endYear}">
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-
-                </li>
-
-                <li>
-                    <div class="row mt-3">
-                        <div class="col">
-                            <input type="text" class="form-control" id="startMileage" placeholder="Пробег от">
-                        </div>
-                        <div class="col">
-                            <input type="text" class="form-control" id="endMileage" placeholder="до">
-                        </div>
-                    </div>
-
-                </li>
-
-                <li>
-                    <button type="button" class="btn btn-primary">Показать предложения</button>
-                </li>
-            </ul>
+            <form th:action="@{/models/search}" method="get">
+                <select class="form-select mt-3" th:field="*{brands}" id="brandSelect">
+                    <option th:each="b : ${brands}"
+                            th:value="${b.name}"
+                            th:text="${b.name}">
+                    </option>
+                </select>
+                <select class="form-select mt-3" th:field="*{models}">
+                    <option th:each="m : ${models}"
+                            th:value="${m.name}"
+                            th:text="${m.name}">
+                    </option>
+                </select>
+                <button type="submit" class="btn btn-primary mt-3">Показать предложения</button>
+            </form>
         </div>
 
         <div class="col-md-9">
@@ -118,10 +71,10 @@
                             </a>
                             <h5 th:text="${model.year}"></h5>
                             <h5 th:text="${model.price} + ' P'"></h5>
-                            <h5 th:text="${model.category}"></h5>
-                            <h5 th:text="${model.transmission}"></h5>
+                            <h5 th:text="${model.category.name}"></h5>
+                            <h5 th:text="${model.transmission.name}"></h5>
                             <h5 th:text="${model.mileage} + ' км'"></h5>
-                            <h5 th:text="${model.engine}"></h5>
+                            <h5 th:text="${model.engine.name}"></h5>
                         </div>
                     </div>
                 </div>
@@ -139,6 +92,7 @@
         </div>
     </div>
 </footer>-->
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
 </body>
 </html>

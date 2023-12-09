@@ -69,11 +69,11 @@ public class AuthenticationController {
 
     @GetMapping("/profile")
     public String profile(Principal principal, Model model) {
-        String login = principal.getName();
-        Users user = userService.getUser(login);
+        String username = principal.getName();
+        Users user = userService.getUser(username);
 
         UserProfileView userProfileView = new UserProfileView(
-                login,
+                username,
                 user.getFirstName(),
                 user.getLastName(),
                 user.getImageURL()

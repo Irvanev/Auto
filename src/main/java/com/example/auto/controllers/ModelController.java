@@ -2,6 +2,7 @@ package com.example.auto.controllers;
 
 import com.example.auto.dtos.AddModelDto;
 import com.example.auto.dtos.AllModelDto;
+import com.example.auto.models.entities.Models;
 import com.example.auto.models.enums.CategoryEnum;
 import com.example.auto.services.BrandService;
 import com.example.auto.services.ModelsService;
@@ -77,5 +78,10 @@ public class ModelController {
         model.addAttribute("modelInfo", modelService.showModelInfo(id));
 
         return "showModelDetail";
+    }
+
+    @GetMapping("/models/search")
+    public List<Models> searchModels(@RequestParam String brand, @RequestParam String model) {
+        return modelService.searchModels(brand, model);
     }
 }

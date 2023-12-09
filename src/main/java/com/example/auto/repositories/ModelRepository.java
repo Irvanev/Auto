@@ -12,13 +12,7 @@ import java.util.Optional;
 
 public interface ModelRepository extends JpaRepository<Models, String> {
     Optional<Models> findById(String id);
-    List<Models> findByBrandsName(String brandName);
-    List<Models> findByName(String name);
-    List<Models> findByYear(int year);
-    List<Models> findByMileage(int mileage);
-    List<Models> findByPrice(BigDecimal price);
     List<Models> findByCategory(CategoryEnum category);
-    List<Models> findByEngine(EngineEnum engine);
-    List<Models> findByTransmission(TransmissionEnum transmission);
+    List<Models> findByBrandsNameAndName(String brand, String model);
     void deleteById(String id);
 }

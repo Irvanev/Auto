@@ -11,7 +11,6 @@
 //import org.springframework.stereotype.Component;
 //
 //import java.time.LocalDateTime;
-//import java.util.List;
 //
 //@Component
 //public class Init implements CommandLineRunner {
@@ -53,7 +52,7 @@
 //       var adminRole = roleRepository.
 //                findByRoleName(RoleEnum.Admin).orElseThrow();
 //
-//       var adminUser = new Users("adminforever", passwordEncoder.encode(defaultPassword), "Adminka", "Adminovich", "https://jbrfejwdnckjnjwknjkcee");
+//       var adminUser = new Users("Irvvanevv", passwordEncoder.encode(defaultPassword), "Adminka", "Adminovich", "https://jbrfejwdnckjnjwknjkcee");
 //       adminUser.setRole(adminRole);
 //       adminUser.setCreated(LocalDateTime.now());
 //       adminUser.setModified(LocalDateTime.now());

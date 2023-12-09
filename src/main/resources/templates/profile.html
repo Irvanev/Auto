@@ -20,9 +20,9 @@
         </div>
         <div class="col-md-6">
             <h3>Информация о пользователе</h3>
-            <h5 th:text="*{login}"></h5>
-            <h5 th:text="*{firstName}"></h5>
-            <h5 th:text="*{lastName}"></h5>
+            <h5 th:text="*{username}"></h5>
+            <h5 th:text="'Имя: ' + *{firstName}"></h5>
+            <h5 th:text="'Фамилия: ' + *{lastName}"></h5>
             <button type="button" class="btn btn-primary">Редактировать профиль</button>
         </div>
     </div>

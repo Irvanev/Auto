@@ -23,11 +23,15 @@
                           th:object="${brandsModel}">
                         <div class="mb-3">
                             <label for="brandName" class="form-label">Название бренда</label>
-                            <input type="text" class="form-control" id="brandName" name="brandName" th:field="*{name}">
+                            <input type="text" class="form-control" id="brandName" name="brandName" th:field="*{name}"
+                            th:errorclass="is-invalid">
+                            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error message</p>
                         </div>
                         <div class="mb-3">
                             <label for="country" class="form-label">Страна производителя</label>
-                            <input type="text" class="form-control" id="country" name="country" th:field="*{country}">
+                            <input type="text" class="form-control" id="country" name="country" th:field="*{country}"
+                                   th:errorclass="is-invalid">
+                            <p th:if="${#fields.hasErrors('country')}" th:errors="*{country}">Error message</p>
                         </div>
                         <button type="submit" class="btn btn-primary">Добавить</button>
                     </form>

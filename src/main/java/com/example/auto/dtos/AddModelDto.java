@@ -112,8 +112,8 @@ public class AddModelDto {
         this.price = price;
     }
 
-    @Min(value = 1, message = "Mileage must be a positive number!")
-    @NotNull(message = "Mileage must not be null or empty!")
+    @NotEmpty(message = "Description cannot be null or empty!")
+    @Size(min = 2, max = 200, message = "Description should be at least 2 characters long!")
     public String getDescription() {
         return description;
     }
