@@ -37,7 +37,7 @@ public class SecurityConfig {
                                                 "models/category/Bus", "models/category/Truck", "models/category/Motorcycle", "/users/login-error",  " img/** ")
                                         .permitAll().
                                         requestMatchers("/users/profile").authenticated().
-                                        requestMatchers("/models/add","/brands/all","/brands/add", "/models/modelDelete/").hasRole(RoleEnum.Admin.name()).
+                                        requestMatchers("/models/add","/brands/all","/brands/add", "/models/modelDelete/", "/users/all").hasRole(RoleEnum.Admin.name()).
                                         anyRequest().permitAll()
                 )
                 .formLogin(

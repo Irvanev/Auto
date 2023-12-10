@@ -10,3 +10,7 @@
 .navbar .nav-link:hover {
     color: #23c5c5;
 }
+
+.bi-person {
+    fill: white;
+}

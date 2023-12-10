@@ -13,16 +13,3 @@ public class BeanConfig {
         return new ModelMapper();
     }
 }
-
-/*@Configuration
-public class BeanConfig {
-    @Bean
-    public ModelMapper modelMapper() {
-        ModelMapper modelMapper = new ModelMapper();
-
-        modelMapper.typeMap(Models.class, AllModelDto.class)
-                .addMapping(Models::getBrands, AllModelDto::setBrandName);
-
-        return modelMapper;
-    }
-}*/

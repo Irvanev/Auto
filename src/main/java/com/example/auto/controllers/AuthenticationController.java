@@ -83,4 +83,10 @@ public class AuthenticationController {
 
         return "profile";
     }
+
+    @GetMapping("/all")
+    public String allUsers(Model model) {
+        model.addAttribute("users", userService.allUsers());
+        return "users";
+    }
 }

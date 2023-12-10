@@ -38,4 +38,9 @@ public class Roles extends BaseEntity {
     public void setRoleName(RoleEnum roleName) {
         this.roleName = roleName;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(roleName);
+    }
 }

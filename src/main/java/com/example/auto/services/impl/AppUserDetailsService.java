@@ -11,7 +11,7 @@ import java.util.Collections;
 import java.util.stream.Collectors;
 
 public class AppUserDetailsService implements UserDetailsService {
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public AppUserDetailsService(UserRepository userRepository) {
         this.userRepository = userRepository;
