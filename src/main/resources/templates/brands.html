@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Brands</title>
@@ -30,6 +30,7 @@
             <th scope="col">Country</th>
             <th scope="col">Created</th>
             <th scope="col">Modified</th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
@@ -38,6 +39,9 @@
             <td th:text="${b.country}"></td>
             <td th:text="${#temporals.format(b.created, 'dd.MM.yyyy HH:mm')}"></td>
             <td th:text="${#temporals.format(b.modified, 'dd.MM.yyyy HH:mm')}"></td>
+            <td>
+                <a th:href="@{/brands/delete/{name}(name=${b.name})}" class="btn btn-danger">Удалить</a>
+            </td>
         </tr>
         </tbody>
     </table>

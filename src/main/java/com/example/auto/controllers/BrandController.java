@@ -48,10 +48,9 @@ public class BrandController {
         return "redirect:/brands/all";
     }
 
-    @GetMapping("/brandDelete/{name}")
+    @GetMapping("/delete/{name}")
     public String removeBrand(@PathVariable("name") String name) {
         brandService.removeBrand(name);
-
         return "redirect:/brands/all";
     }
 }
