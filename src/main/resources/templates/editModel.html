@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>EditModel</title>
+  <link rel="stylesheet" href="/css/bootstrap-grid.css">
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/navbar.css">
+</head>
+<body>
+
+<div th:replace="fragments/navbar">Navbar</div>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow mt-5">
+        <div class="card-body">
+          <h2 class="card-title">Изменить модель</h2>
+          <form th:action="@{/models/edit/{id}(id=${model.id})}"
+                th:method="post"
+                th:object="${model}">
+            <div class="mb-3">
+              <input type="text" class="form-control" id="brandName" name="brandName" placeholder="Модель" th:field="*{name}"
+                     th:errorclass="is-invalid">
+              <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error message</p>
+            </div>
+            <select class="form-select mt-3" aria-label="Default select example" th:field="*{brandName}">
+              <option
+                      th:each="b : ${availableBrands}"
+                      th:value="${b.name}"
+                      th:text="${b.name}">
+              </option>
+            </select>
+            <select class="form-select mt-3" th:field="*{transmission}">
+              <option th:each="transmission : ${T(com.example.auto.models.enums.TransmissionEnum).values()}"
+                      th:value="${transmission}"
+                      th:text="${transmission.name}">
+              </option>
+            </select>
+            <select class="form-select mt-3" th:field="*{category}">
+              <option th:each="category : ${T(com.example.auto.models.enums.CategoryEnum).values()}"
+                      th:value="${category}"
+                      th:text="${category.name}">
+              </option>
+            </select>
+            <select class="form-select mt-3" th:field="*{engine}">
+              <option th:each="engine : ${T(com.example.auto.models.enums.EngineEnum).values()}"
+                      th:value="${engine}"
+                      th:text="${engine.name}">
+              </option>
+            </select>
+            <div class="row mt-3">
+              <div class="col">
+                <div class="mb-3">
+                  <input type="text" class="form-control" id="startYear" name="startYear" placeholder="Год от" th:field="*{startYear}"
+                         th:errorclass="is-invalid">
+                  <p th:if="${#fields.hasErrors('startYear')}" th:errors="*{startYear}">Error message</p>
+                </div>
+              </div>
+              <div class="col">
+                <div class="mb-3">
+                  <input type="text" class="form-control" id="endYear" name="endYear" placeholder="до" th:field="*{endYear}"
+                         th:errorclass="is-invalid">
+                  <p th:if="${#fields.hasErrors('startYear')}" th:errors="*{endYear}">Error message</p>
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <input type="text" class="form-control" id="mileage" name="mileage" placeholder="Пробег" th:field="*{mileage}"
+                     th:errorclass="is-invalid">
+              <p th:if="${#fields.hasErrors('mileage')}" th:errors="*{mileage}">Error message</p>
+            </div>
+            <div class="mb-3">
+              <input type="text" class="form-control" id="price" name="price" placeholder="Цена" th:field="*{price}"
+                     th:errorclass="is-invalid">
+              <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Error message</p>
+            </div>
+            <div class="mb-3">
+              <input type="text" class="form-control" id="year" name="yer" placeholder="Год" th:field="*{year}"
+                     th:errorclass="is-invalid">
+              <p th:if="${#fields.hasErrors('year')}" th:errors="*{year}">Error message</p>
+            </div>
+            <div class="mb-3">
+              <input type="text" class="form-control" id="imageURL" name="imageURL" placeholder="Фото" th:field="*{imageURL}"
+                     th:errorclass="is-invalid">
+              <p th:if="${#fields.hasErrors('imageURL')}" th:errors="*{imageURL}">Error message</p>
+            </div>
+            <div class="mb-3">
+              <textarea class="form-control" id="description" rows="3" placeholder="Описание" th:field="*{description}" th:errorclass="is-invalid"></textarea>
+              <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Error message</p>
+            </div>
+            <div class="align-bottom">
+              <button type="submit" class="btn btn-primary">Изменить</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

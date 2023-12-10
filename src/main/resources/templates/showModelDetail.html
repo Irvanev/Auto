@@ -30,7 +30,7 @@
                     <p class="card-text" sec:authorize="hasRole('Admin')">Modified: <span th:text="${#temporals.format(modelInfo.modified, 'dd.MM.yyyy HH:mm')}"></span></p>
                     <div class="d-grid gap-2">
                         <a th:href="@{/models/modelDelete/{id}(id=${modelInfo.id})}" class="btn btn-danger" sec:authorize="hasRole('Admin')">Удалить</a>
-                        <a href="#" class="btn btn-primary" sec:authorize="hasRole('Admin')">Изменить</a>
+                        <a th:href="@{/models/edit/{id}(id=${modelInfo.id})}" class="btn btn-primary" sec:authorize="hasRole('Admin')">Изменить</a>
                     </div>
                 </div>
             </div>

@@ -84,4 +84,22 @@ public class ModelController {
     public List<Models> searchModels(@RequestParam String brand, @RequestParam String model) {
         return modelService.searchModels(brand, model);
     }
+
+    @GetMapping("/edit/{id}")
+    public String editModel(@PathVariable("id") String id, Model model) {
+        model.addAttribute("model", modelService.showModelInfo(id));
+        model.addAttribute("availableBrands", brandService.allBrands());
+        return "editModel";
+    }
+    @PostMapping("/edit/{id}")
+    public String editModel(@PathVariable String id, @Valid AddModelDto addModelDto, BindingResult result, RedirectAttributes attributes) {
+        if (result.hasErrors()) {
+            attributes.addFlashAttribute("modelsModel", addModelDto);
+            attributes.addFlashAttribute("org.springframework.validation.BindingResult.modelsModel",
+                    result);
+            return "redirect:/models/edit/{id}";
+        }
+        modelService.editModel(id, addModelDto);
+        return "redirect:/models/all";
+    }
 }

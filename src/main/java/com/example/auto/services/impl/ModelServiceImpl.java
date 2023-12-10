@@ -69,4 +69,16 @@ public class ModelServiceImpl implements ModelsService {
     public List<Models> searchModels(String brand, String model) {
         return modelRepository.findByBrandsNameAndName(brand, model);
     }
+
+    @Override
+    public void editModel(String id, AddModelDto addModelDto) {
+        Models model = modelRepository.findById(id).orElse(null);
+        model.setName(addModelDto.getName());
+        model.setBrands(brandRepository.findByName(addModelDto.getBrandName()).orElse(null));
+        model.setCategory(addModelDto.getCategory());
+        model.setStartYear(addModelDto.getStartYear());
+        model.setEndYear(addModelDto.getEndYear());
+        model.setModified(LocalDateTime.now());
+        modelRepository.saveAndFlush(model);
+    }
 }
