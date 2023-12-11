@@ -6,6 +6,9 @@ import com.example.auto.models.entities.Brands;
 import com.example.auto.repositories.BrandRepository;
 import com.example.auto.services.BrandService;
 import org.modelmapper.ModelMapper;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

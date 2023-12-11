@@ -15,7 +15,7 @@ import java.util.Optional;
 public interface ModelRepository extends JpaRepository<Models, String> {
     Optional<Models> findById(String id);
     List<Models> findByCategory(CategoryEnum category);
-    List<Models> findByBrandsNameAndName(String brand, String model);
+    List<Models> findByBrandsName(String brandName);
     @Modifying
     @Transactional
     void deleteById(String id);

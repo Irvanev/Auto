@@ -11,6 +11,9 @@ import com.example.auto.repositories.RoleRepository;
 import com.example.auto.repositories.UserRepository;
 import com.example.auto.services.UserService;
 import org.modelmapper.ModelMapper;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -73,5 +76,16 @@ public class UserServiceImpl implements UserService {
                 .addMapping(Users::getUsername, AllUserDto::setUsername);
         return userRepository.findAll().stream().map(users -> modelMapper.map(users, AllUserDto.class))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public void editUser(String username, UserRegistrationDto userRegistrationDto) {
+        Users user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException(username + " was not found!"));
+        user.setFirstName(userRegistrationDto.getFirstName());
+        user.setLastName(userRegistrationDto.getLastName());
+        user.setImageURL(userRegistrationDto.getImageURL());
+        user.setModified(LocalDateTime.now());
+        userRepository.save(user);
     }
 }

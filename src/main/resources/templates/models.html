@@ -30,8 +30,8 @@
                 Сортировать
             </button>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" th:href="@{/models/sort/price}">Цены по убыванию</a></li>
-                <li><a class="dropdown-item" href="#">Цены по возрастанию</a></li>
+                <li><a class="dropdown-item" th:href="@{/models/sortedByPriceMin}">Цены по возрастанию</a></li>
+                <li><a class="dropdown-item" th:href="@{/models/sortedByPriceMax}">Цены по убыванию</a></li>
             </ul>
         </div>
     </div>
@@ -41,16 +41,10 @@
     <div class="row">
         <div class="col-md-3 mt-3">
             <form th:action="@{/models/search}" method="get">
-                <select class="form-select mt-3" th:field="*{brands}" id="brandSelect">
-                    <option th:each="b : ${brands}"
-                            th:value="${b.name}"
-                            th:text="${b.name}">
-                    </option>
-                </select>
-                <select class="form-select mt-3" th:field="*{models}">
-                    <option th:each="m : ${models}"
-                            th:value="${m.name}"
-                            th:text="${m.name}">
+                <select class="form-select mt-3" name="brandName">
+                    <option th:each="brand : ${brands}"
+                            th:value="${brand.name}"
+                            th:text="${brand.name}">
                     </option>
                 </select>
                 <button type="submit" class="btn btn-primary mt-3">Показать предложения</button>

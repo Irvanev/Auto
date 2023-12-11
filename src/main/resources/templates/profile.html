@@ -23,7 +23,7 @@
             <h5 th:text="*{username}"></h5>
             <h5 th:text="'Имя: ' + *{firstName}"></h5>
             <h5 th:text="'Фамилия: ' + *{lastName}"></h5>
-            <button type="button" class="btn btn-primary">Редактировать профиль</button>
+            <a th:href="@{/users/edit/{username}(username=${user.username})}" class="btn btn-primary">Изменить</a>
         </div>
     </div>
 </div>

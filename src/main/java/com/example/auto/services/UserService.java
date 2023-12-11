@@ -10,4 +10,5 @@ public interface UserService {
     public void addUser(UserRegistrationDto userRegistrationDto);
     public Users getUser(String username);
     public List<AllUserDto> allUsers();
+    public void editUser(String username, UserRegistrationDto userRegistrationDto);
 }

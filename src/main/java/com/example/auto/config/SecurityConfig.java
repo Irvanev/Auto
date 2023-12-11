@@ -34,9 +34,10 @@ public class SecurityConfig {
                                         requestMatchers(PathRequest.toStaticResources().atCommonLocations())
                                         .permitAll().
                                         requestMatchers("/models/all", "/users/login", "/users/register", "/users/login-error", "models/category/Car",
-                                                "models/category/Bus", "models/category/Truck", "models/category/Motorcycle", "/users/login-error",  " img/** ")
+                                                "models/category/Bus", "models/category/Truck", "models/category/Motorcycle", "/users/login-error",  " img/** ",
+                                                "models/sortedByPrice")
                                         .permitAll().
-                                        requestMatchers("/users/profile").authenticated().
+                                        requestMatchers("/users/profile", "users/edit/").authenticated().
                                         requestMatchers("/models/add","/brands/all","/brands/add", "/models/modelDelete/", "/users/all").hasRole(RoleEnum.Admin.name()).
                                         anyRequest().permitAll()
                 )

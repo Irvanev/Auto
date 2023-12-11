@@ -10,10 +10,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
@@ -88,5 +85,23 @@ public class AuthenticationController {
     public String allUsers(Model model) {
         model.addAttribute("users", userService.allUsers());
         return "users";
+    }
+
+    @GetMapping("/edit/{username}")
+    public String editUser(@PathVariable String username, Model model) {
+        model.addAttribute("user", userService.getUser(username));
+        return "editUser";
+    }
+
+    @PostMapping("/edit/{username}")
+    public String editUser(@PathVariable String username, @Valid UserRegistrationDto userRegistrationDto, BindingResult result, RedirectAttributes attributes) {
+        if (result.hasErrors()) {
+            attributes.addFlashAttribute("userRegistrationDto", userRegistrationDto);
+            attributes.addFlashAttribute("org.springframework.validation.BindingResult.userRegistrationDto", result);
+
+            return "redirect:/users/edit/{username}";
+        }
+        this.userService.editUser(username, userRegistrationDto);
+        return "redirect:/models/all";
     }
 }

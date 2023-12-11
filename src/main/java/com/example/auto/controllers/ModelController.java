@@ -80,11 +80,6 @@ public class ModelController {
         return "showModelDetail";
     }
 
-    @GetMapping("/models/search")
-    public List<Models> searchModels(@RequestParam String brand, @RequestParam String model) {
-        return modelService.searchModels(brand, model);
-    }
-
     @GetMapping("/edit/{id}")
     public String editModel(@PathVariable("id") String id, Model model) {
         model.addAttribute("model", modelService.showModelInfo(id));
@@ -101,5 +96,29 @@ public class ModelController {
         }
         modelService.editModel(id, addModelDto);
         return "redirect:/models/all";
+    }
+
+    @GetMapping("/sortedByPriceMin")
+    public String getModelsSortedByPriceMin(Model model) {
+        List<AllModelDto> models = modelService.allModelsSortedByPriceMin();
+        model.addAttribute("models", models);
+        model.addAttribute("brands", brandService.allBrands());
+        return "models";
+    }
+
+    @GetMapping("/sortedByPriceMax")
+    public String getModelsSortedByPriceMax(Model model) {
+        List<AllModelDto> models = modelService.allModelsSortedByPriceMax();
+        model.addAttribute("models", models);
+        model.addAttribute("brands", brandService.allBrands());
+        return "models";
+    }
+
+    @GetMapping("/search")
+    public String getModelsByBrand(@RequestParam String brandName, Model model) {
+        List<AllModelDto> models = modelService.allModelsByBrandName(brandName);
+        model.addAttribute("models", models);
+        model.addAttribute("brands", brandService.allBrands());
+        return "models";
     }
 }

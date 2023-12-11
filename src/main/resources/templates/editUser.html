@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>EditUser</title>
+    <link rel="stylesheet" href="/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow mt-5">
+                <div class="card-body">
+                    <form th:action="@{/users/edit/{username}}"
+                          th:method="post"
+                          th:object="${user}">
+                        <div class="mb-3">
+                            <label for="firstName" class="form-label">First name</label>
+                            <input type="text" class="form-control" id="firstName" th:field="*{firstName}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="lastName" class="form-label">Last name</label>
+                            <input type="text" class="form-control" id="lastName" th:field="*{lastName}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="imageURL" class="form-label">Image URL</label>
+                            <input type="text" class="form-control" id="imageURL" th:field="*{imageURL}">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Изменить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

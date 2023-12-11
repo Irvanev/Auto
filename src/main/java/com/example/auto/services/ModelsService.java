@@ -14,6 +14,8 @@ public interface ModelsService {
     public List<AllModelDto> allModels();
     public List<AllModelDto> allModelsByCategory(CategoryEnum category);
     public ShowModelInfoDto showModelInfo(String id);
-    public List<Models> searchModels(String brand, String model);
     public void editModel(String id, AddModelDto addModelDto);
+    public List<AllModelDto> allModelsSortedByPriceMin();
+    public List<AllModelDto> allModelsSortedByPriceMax();
+    public List<AllModelDto> allModelsByBrandName(String brandName);
 }
