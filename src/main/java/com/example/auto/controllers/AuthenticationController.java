@@ -2,9 +2,13 @@ package com.example.auto.controllers;
 
 import com.example.auto.dtos.UserProfileView;
 import com.example.auto.dtos.UserRegistrationDto;
+import com.example.auto.models.entities.Offers;
 import com.example.auto.models.entities.Users;
 import com.example.auto.services.UserService;
 import jakarta.validation.Valid;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Controller;
@@ -14,12 +18,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 @RequestMapping("/users")
 public class AuthenticationController {
     private UserService userService;
-
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
@@ -36,7 +40,8 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public String doRegister(@Valid UserRegistrationDto userRegistrationDto, BindingResult result, RedirectAttributes attributes) {
+    public String doRegister(@Valid UserRegistrationDto userRegistrationDto, BindingResult result,
+                             RedirectAttributes attributes) {
 
         if (result.hasErrors()) {
             attributes.addFlashAttribute("userRegistrationDto", userRegistrationDto);
@@ -77,6 +82,8 @@ public class AuthenticationController {
         );
 
         model.addAttribute("user", userProfileView);
+        List<Offers> offers = userService.getUserOrders(username);
+        model.addAttribute("offers", offers);
 
         return "profile";
     }

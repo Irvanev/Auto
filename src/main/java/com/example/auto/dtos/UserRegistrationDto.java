@@ -2,6 +2,7 @@ package com.example.auto.dtos;
 
 import com.example.auto.util.UniqueUserName;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDateTime;
@@ -18,8 +19,8 @@ public class UserRegistrationDto {
     private LocalDateTime created;
     private LocalDateTime modified;
 
-    @NotEmpty
-    @Length(min = 5, message = "UserName must be more than 5 characters!")
+    @NotEmpty(message = "User name cannot be null or empty!")
+    @Size(min = 5, max = 20)
     public String getUsername() {
         return username;
     }
@@ -27,8 +28,8 @@ public class UserRegistrationDto {
         this.username = username;
     }
 
-    @NotEmpty
-    @Length(min = 10, message = "Password must be more than 10 characters!")
+    @NotEmpty(message = "User name cannot be null or empty!")
+    @Size(min = 5, max = 20)
     public String getPassword() {
         return password;
     }
@@ -36,8 +37,8 @@ public class UserRegistrationDto {
         this.password = password;
     }
 
-    @NotEmpty
-    @Length(min = 10, message = "Confirm password must be more than 10 characters!")
+    @NotEmpty(message = "User name cannot be null or empty!")
+    @Size(min = 5, max = 20)
     public String getConfirmPassword() {
         return confirmPassword;
     }
@@ -45,8 +46,8 @@ public class UserRegistrationDto {
         this.confirmPassword = confirmPassword;
     }
 
-    @NotEmpty
-    @Length(min = 2, message = "First name must be more than 2 characters!")
+    @NotEmpty(message = "User name cannot be null or empty!")
+    @Size(min = 5, max = 20)
     public String getFirstName() {
         return firstName;
     }
@@ -54,8 +55,8 @@ public class UserRegistrationDto {
         this.firstName = firstName;
     }
 
-    @NotEmpty
-    @Length(min = 2, message = "Last name must be more than 2 characters!")
+    @NotEmpty(message = "User name cannot be null or empty!")
+    @Size(min = 5, max = 20)
     public String getLastName() {
         return lastName;
     }
@@ -63,8 +64,8 @@ public class UserRegistrationDto {
         this.lastName = lastName;
     }
 
-    @NotEmpty(message = "URL of image cannot be null or empty!")
-    @Length(min = 10, max = 300, message = "URL of image must be more than 10 characters!")
+    @NotEmpty(message = "User name cannot be null or empty!")
+    @Size(min = 5, max = 20)
     public String getImageURL() {
         return imageURL;
     }

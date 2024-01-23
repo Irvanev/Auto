@@ -31,7 +31,12 @@
                     <div class="d-grid gap-2">
                         <a th:href="@{/models/modelDelete/{id}(id=${modelInfo.id})}" class="btn btn-danger" sec:authorize="hasRole('Admin')">Удалить</a>
                         <a th:href="@{/models/edit/{id}(id=${modelInfo.id})}" class="btn btn-primary" sec:authorize="hasRole('Admin')">Изменить</a>
-                        <a href="#" class="btn btn-success" sec:authorize="hasRole('User')">Купить</a>
+                        <!-- В showModelDetail.html -->
+                        <form th:action="@{/offers/buy}" th:object="${modelInfo}" th:method="post">
+                            <input type="hidden" th:field="*{name}" th:value="${modelInfo.name}" />
+                            <input type="hidden" th:field="*{id}" th:value="${modelInfo.id}" />
+                            <button type="submit">Купить</button>
+                        </form>
                     </div>
                 </div>
             </div>

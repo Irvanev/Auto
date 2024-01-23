@@ -1,5 +1,8 @@
 package com.example.auto.dtos;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+
 import java.time.LocalDateTime;
 
 public class AllUserDto {

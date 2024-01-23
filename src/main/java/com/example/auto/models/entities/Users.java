@@ -83,4 +83,9 @@ public class Users extends BaseEntity {
     public void setRole(Roles role) {
         this.role = role;
     }
+
+    @Override
+    public String toString() {
+        return firstName + " " + lastName;
+    }
 }

@@ -18,28 +18,40 @@
                           th:method="post"
                           th:object="${userRegistration}">
                         <div class="mb-3">
-                            <label for="login" class="form-label">Login</label>
-                            <input type="text" class="form-control" id="login" th:field="*{username}">
+                            <label for="username" class="form-label">Login</label>
+                            <input type="text" class="form-control" id="username" th:field="*{username}" name="username"
+                            th:errorclass="is-invalid">
+                            <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Error message</p>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" th:field="*{password}">
+                            <input type="password" class="form-control" id="password" th:field="*{password}"
+                            th:errorclass="is-invalid">
+                            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Error message</p>
                         </div>
                         <div class="mb-3">
                             <label for="confirmPassword" class="form-label">Confirm Password</label>
-                            <input type="password" class="form-control" id="confirmPassword" th:field="*{confirmPassword}">
+                            <input type="password" class="form-control" id="confirmPassword" th:field="*{confirmPassword}"
+                            th:errorclass="is-invalid">
+                            <p th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}">Error message</p>
                         </div>
                         <div class="mb-3">
                             <label for="firstName" class="form-label">First name</label>
-                            <input type="text" class="form-control" id="firstName" th:field="*{firstName}">
+                            <input type="text" class="form-control" id="firstName" th:field="*{firstName}"
+                            th:errorclass="is-invalid">
+                            <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Error message</p>
                         </div>
                         <div class="mb-3">
                             <label for="lastName" class="form-label">Last name</label>
-                            <input type="text" class="form-control" id="lastName" th:field="*{lastName}">
+                            <input type="text" class="form-control" id="lastName" th:field="*{lastName}"
+                            th:errorclass="is-invalid">
+                            <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Error message</p>
                         </div>
                         <div class="mb-3">
                             <label for="imageURL" class="form-label">Image URL</label>
-                            <input type="text" class="form-control" id="imageURL" th:field="*{imageURL}">
+                            <input type="text" class="form-control" id="imageURL" th:field="*{imageURL}"
+                            th:errorclass="is-invalid">
+                            <p th:if="${#fields.hasErrors('imageURL')}" th:errors="*{imageURL}">Error message</p>
                         </div>
                         <button type="submit" class="btn btn-primary">Зарегестироваться</button>
                     </form>

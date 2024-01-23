@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@EnableCaching
 public class ModelServiceImpl implements ModelsService {
     private final ModelMapper modelMapper;
     private final ModelRepository modelRepository;
@@ -35,7 +34,6 @@ public class ModelServiceImpl implements ModelsService {
     }
 
     @Override
-    @CacheEvict(cacheNames = "models", allEntries = true)
     public void addModel(AddModelDto addModelDto) {
         addModelDto.setCreated(LocalDateTime.now());
         addModelDto.setModified(LocalDateTime.now());
@@ -44,19 +42,12 @@ public class ModelServiceImpl implements ModelsService {
         modelRepository.saveAndFlush(model);
     }
     @Override
-    @CacheEvict(cacheNames = "models", allEntries = true)
     public void removeModel(String id) {
         modelRepository.deleteById(id);
     }
 
     @Override
-    @Cacheable("models")
     public List<AllModelDto> allModels() {
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
         modelMapper.typeMap(Models.class, AllModelDto.class)
                 .addMapping(Models::getBrands, AllModelDto::setBrandName);
         return modelRepository.findAll().stream().map(model -> modelMapper.map(model, AllModelDto.class))

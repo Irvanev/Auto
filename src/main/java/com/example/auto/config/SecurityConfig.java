@@ -35,11 +35,12 @@ public class SecurityConfig {
                                         .permitAll().
                                         requestMatchers("/models/all", "/users/login", "/users/register", "/users/login-error", "models/category/Car",
                                                 "models/category/Bus", "models/category/Truck", "models/category/Motorcycle", "/users/login-error",  " img/** ",
-                                                "models/sortedByPrice")
+                                                "models/sortedByPrice", "/offers/buy/**")
                                         .permitAll().
                                         requestMatchers("/users/profile", "users/edit/").authenticated().
                                         requestMatchers("/models/add","/brands/all","/brands/add", "/models/modelDelete/", "/users/all").hasRole(RoleEnum.Admin.name()).
                                         anyRequest().permitAll()
+
                 )
                 .formLogin(
                         (formLogin) ->

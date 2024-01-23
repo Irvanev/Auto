@@ -2,7 +2,6 @@ package com.example.auto.controllers;
 
 import com.example.auto.dtos.AddModelDto;
 import com.example.auto.dtos.AllModelDto;
-import com.example.auto.models.entities.Models;
 import com.example.auto.models.enums.CategoryEnum;
 import com.example.auto.services.BrandService;
 import com.example.auto.services.ModelsService;
@@ -14,7 +13,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.security.Principal;
 import java.util.List;
+
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Controller
 @RequestMapping("/models")
@@ -47,7 +51,7 @@ public class ModelController {
     }
 
     @PostMapping("/add")
-    public String addModel(@Valid AddModelDto addModelDto, BindingResult result, RedirectAttributes attributes) {
+    public String addModel(@Valid AddModelDto addModelDto, BindingResult result, RedirectAttributes attributes, Principal principal) {
         if (result.hasErrors()) {
             attributes.addFlashAttribute("modelsModel", addModelDto);
             attributes.addFlashAttribute("org.springframework.validation.BindingResult.modelsModel",

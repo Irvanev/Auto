@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Brands</title>
+    <link rel="stylesheet" href="/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+</head>
+<body>
+
+<div th:replace="fragments/navbar">Navbar</div>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-6 text-start">
+            <h1>Заказы</h1>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Model</th>
+            <th scope="col">FullName</th>
+            <th scope="col">Status</th>
+            <th scope="col">Created</th>
+            <th scope="col">Modified</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="o : ${offers}">
+            <td th:text="${o.modelName}"></td>
+            <td th:text="${o.userName}"></td>
+            <td th:text="${o.status}"></td>
+            <td th:text="${#temporals.format(o.created, 'dd.MM.yyyy HH:mm')}"></td>
+            <td th:text="${#temporals.format(o.modified, 'dd.MM.yyyy HH:mm')}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
